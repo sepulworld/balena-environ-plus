@@ -30,6 +30,10 @@ Application envionment variables apply to all services within the application, a
 Register your raspberry pi at Luftdaten.info
 * <https://meine.luftdaten.info>
 
+Hardware
+* <https://shop.pimoroni.com/products/enviro-plus>
+* <https://shop.pimoroni.com/products/pms5003-particulate-matter-sensor-with-cable>
+
 ## Acknowledgments
 
 https://github.com/pimoroni/enviroplus-python
