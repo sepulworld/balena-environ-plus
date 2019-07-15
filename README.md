@@ -33,6 +33,7 @@ Register your raspberry pi at Luftdaten.info
 Hardware
 * <https://shop.pimoroni.com/products/enviro-plus>
 * <https://shop.pimoroni.com/products/pms5003-particulate-matter-sensor-with-cable>
+* <https://shop.pimoroni.com/products/raspberry-pi-zero-wh-with-pre-soldered-header>
 
 ## Acknowledgments
 
