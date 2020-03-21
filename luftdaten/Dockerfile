@@ -1,4 +1,4 @@
-FROM sepulworld/balena-environ-plus:v1
+FROM sighmon/balena-enviro-plus:v1
 
 WORKDIR /usr/src
 
