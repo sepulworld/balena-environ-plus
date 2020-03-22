@@ -3,9 +3,9 @@
 # Built from /base_image/Dockerfile
 FROM sighmon/balena-enviro-plus:v1
 
-RUN pip3 install prometheus_client
-
 WORKDIR /usr/src
+
+RUN sudo pip3 install prometheus_client
 
 COPY enviroplus_exporter/enviroplus_exporter.py enviroplus_exporter.py
 

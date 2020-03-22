@@ -1,40 +1,37 @@
-# balena-enviro-pi
+# Balena enviro+
 
-If you're looking for a way to quickly and easily get up and running with an Enviro Plus (with PMS5003 particle sensor) device for your home network, this is the project for you.
-
-This project is a [balenaCloud](https://www.balena.io/cloud) stack with the following services:
-
-* [Enviro-Plus](https://github.com/pimoroni/enviroplus-python)
-
-balenaCloud is a free service to remotely manage and update your Raspberry Pi through an online dashboard interface, as well as providing remote access to the Pi-hole web interface without any additional configuation.
+Deploy an [Enviro+](https://shop.pimoroni.com/products/enviro) environment sensor (with [PMS5003](https://shop.pimoroni.com/products/pms5003-particulate-matter-sensor-with-cable) particle sensor) using [Balena](https://www.balena.io).
 
 ## Getting Started
 
-To get started you'll first need to sign up for a free balenaCloud account and flash your device.
+To try this on your Raspberry Pi using Docker:
 
-<https://www.balena.io/docs/learn/getting-started>
+Install Docker.
 
-## Deployment
+* `curl -sSL https://get.docker.com | sh`
+* `sudo usermod -aG docker pi`
+* Reboot your Pi
 
-Once your account is set up, deployment is carried out by downloading the project and pushing it to your device either via Git or the balena CLI.
+Build and run the Docker image.
 
-### Application Environment Variables
+* `docker build -t sighmon/enviroplus_exporter:v1 .`
+* `docker run --privileged -p 8000:8000 sighmon/enviroplus_exporter:v1`
 
-Application envionment variables apply to all services within the application, and can be applied fleet-wide to apply to multiple devices.
+## Deploy with Balena
 
-|Name|Example|Purpose|
-|---|---|---|
+Once you're happy that it works on your Pi, use the Balena CLI to push it to a Balena app.
 
-## Usage
+* `balena push <your_app_name>`
 
-Register your raspberry pi at Luftdaten.info
-* <https://meine.luftdaten.info>
+## Build your own base image
 
-Hardware
-* <https://shop.pimoroni.com/products/enviro-plus>
-* <https://shop.pimoroni.com/products/pms5003-particulate-matter-sensor-with-cable>
-* <https://shop.pimoroni.com/products/raspberry-pi-zero-wh-with-pre-soldered-header>
+If you'd prefer to build your own base image, follow these instructions:
+
+* `cd base_image`
+* `docker build -t <your_name>/balena-enviro-plus:v1 .`
+* Create a repository on [Docker Hub](https://hub.docker.com/)
+* `docker push <your_name>/balena-enviro-plus:v1`
 
 ## Acknowledgments
 
-https://github.com/pimoroni/enviroplus-python
+Thanks to [Zane Williamson](https://github.com/sepulworld/balena-environ-plus) for his work.
