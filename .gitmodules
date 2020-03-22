@@ -1,3 +1,3 @@
 [submodule "enviroplus_exporter"]
 	path = enviroplus_exporter
-	url = git@github.com:tijmenvandenbrink/enviroplus_exporter.git
+	url = https://github.com/tijmenvandenbrink/enviroplus_exporter
