@@ -3,13 +3,16 @@ FROM balenalib/raspberry-pi-debian-python:3.7.4-build
 WORKDIR /usr/src
 
 # Not very fast on pi1, fyi
-RUN pip3 install numpy --user --no-binary :all:
+# RUN pip3 install numpy --user --no-binary :all:
 
 # Runs pretty quick
 RUN pip3 install enviroplus \
   requests \
   smbus \
+  pil \
   spidev \
-  RPi.GPIO
+  RPi.GPIO \
+  libportaudio2 \
+  numpy
 
 RUN install_packages python3-pil libatlas-base-dev python3-dev
