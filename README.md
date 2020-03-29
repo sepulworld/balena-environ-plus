@@ -1,6 +1,6 @@
 # Balena enviro+
 
-Deploy an [Enviro+](https://shop.pimoroni.com/products/enviro) environment sensor (with [PMS5003](https://shop.pimoroni.com/products/pms5003-particulate-matter-sensor-with-cable) particle sensor) using [Balena](https://www.balena.io).
+Deploy an [Enviro+](https://shop.pimoroni.com/products/enviro) environment sensor (with [PMS5003](https://shop.pimoroni.com/products/pms5003-particulate-matter-sensor-with-cable) particle sensor) using [Balena](https://www.balena.io) and export the data for [Prometheus](https://prometheus.io).
 
 ## Getting Started
 
@@ -16,6 +16,7 @@ Build and run the Docker image.
 
 * `docker build -t sighmon/enviroplus_exporter:v1 .`
 * `docker run --privileged -p 8000:8000 sighmon/enviroplus_exporter:v1`
+* Open your favourite browser and visit: [raspberrypi.local:8000](http://raspberrypi.local:8000)
 
 ## Deploy with Balena
 
