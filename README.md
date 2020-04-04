@@ -18,6 +18,19 @@ Build and run the Docker image.
 * `docker run --privileged -p 8000:8000 sighmon/enviroplus_exporter:v1`
 * Open your favourite browser and visit: [raspberrypi.local:8000](http://raspberrypi.local:8000)
 
+## Post to InfluxDB as well as exporting to Prometheus
+
+I've added the ability to post to InfluxDB. To enable this, add your [InfluxDB-Cloud](https://www.influxdata.com/products/influxdb-cloud/) environment variables to the `Dockerfile`:
+
+```env
+ENV INFLUXDB_URL="https://your_server_location.gcp.cloud2.influxdata.com"
+ENV INFLUXDB_TOKEN="your_token"
+ENV INFLUXDB_ORG_ID="your_organisation_id"
+ENV INFLUXDB_BUCKET="your_bucket_name"
+ENV INFLUXDB_SENSOR_LOCATION="your_sensor_location"
+ENV INFLUXDB_TIME_BETWEEN_POSTS="number_of_seconds_between_posts"
+```
+
 ## Deploy with Balena
 
 Once you're happy that it works on your Pi, use the Balena CLI to push it to a Balena app.
