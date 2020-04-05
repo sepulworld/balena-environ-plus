@@ -27,17 +27,16 @@ ENV INFLUXDB_URL="https://your_server_location.gcp.cloud2.influxdata.com"
 ENV INFLUXDB_TOKEN="your_token"
 ENV INFLUXDB_ORG_ID="your_organisation_id"
 ENV INFLUXDB_BUCKET="your_bucket_name"
-ENV INFLUXDB_SENSOR_LOCATION="your_sensor_location"
-ENV INFLUXDB_TIME_BETWEEN_POSTS="number_of_seconds_between_posts"
+ENV INFLUXDB_SENSOR_LOCATION="Adelaide"
+ENV INFLUXDB_TIME_BETWEEN_POSTS="5"
 ```
 
 ## Post to Luftdaten as well as exporting to Prometheus
 
-If you'd like to also post your data to [Luftdaten](https://meine.luftdaten.info), you can customise your UID with environment variables. Otherwise it automatically sets it for you from the Raspberry Pi serial number.
+If you'd like to also post your data to [Luftdaten](https://meine.luftdaten.info), set the time between posts in the `Dockerfile`:
 
 ```env
 ENV LUFTDATEN_TIME_BETWEEN_POSTS="30"
-ENV LUFTDATEN_SENSOR_UID="raspi-<your_serial_number>"
 ```
 
 ## Deploy with Balena
