@@ -12,11 +12,19 @@ Install Docker.
 * `sudo usermod -aG docker pi`
 * Reboot your Pi
 
-Build and run the Docker image.
+Clone this repo, and initialise the submodule.
+
+* `git clone https://github.com/sighmon/balena-enviro-plus`
+* `cd balena-enviro-plus`
+* `git submodule update --init`
+
+Build and run the Docker image in the background.
 
 * `docker build -t sighmon/enviroplus_exporter:v1 .`
-* `docker run --privileged -p 8000:8000 sighmon/enviroplus_exporter:v1`
+* `docker run -d --privileged -p 8000:8000 sighmon/enviroplus_exporter:v1`
 * Open your favourite browser and visit: [raspberrypi.local:8000](http://raspberrypi.local:8000)
+* See the running container with `docker ps`
+* Check the logs with `docker logs <containaer_name>`
 
 ## Post to InfluxDB as well as exporting to Prometheus
 
