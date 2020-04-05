@@ -15,5 +15,9 @@ ENV INFLUXDB_BUCKET="your_bucket_name"
 ENV INFLUXDB_SENSOR_LOCATION="your_sensor_location"
 ENV INFLUXDB_TIME_BETWEEN_POSTS="number_of_seconds_between_posts"
 
+# Luftdaten settings
+ENV LUFTDATEN_TIME_BETWEEN_POSTS="30"
+ENV LUFTDATEN_SENSOR_UID=""
+
 # Uses temperature adjustment of 2.25 and also posts to InfluxDB
-CMD ["python3", "enviroplus_exporter.py", "--factor", "2.25", "--influxdb", "true"]
+CMD ["python3", "enviroplus_exporter.py", "--factor", "2.25", "--influxdb", "true", "--luftdaten", "true"]
