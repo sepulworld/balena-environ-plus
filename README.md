@@ -37,6 +37,8 @@ ENV INFLUXDB_ORG_ID="your_organisation_id"
 ENV INFLUXDB_BUCKET="your_bucket_name"
 ENV INFLUXDB_SENSOR_LOCATION="Adelaide"
 ENV INFLUXDB_TIME_BETWEEN_POSTS="5"
+# To see all debug messages
+ENV DEBUG="true"
 ```
 
 ## Post to Luftdaten as well as exporting to Prometheus
@@ -45,6 +47,8 @@ If you'd like to also post your data to [Luftdaten](https://meine.luftdaten.info
 
 ```env
 ENV LUFTDATEN_TIME_BETWEEN_POSTS="30"
+# To see all debug messages
+ENV DEBUG="true"
 ```
 
 ## Deploy with Balena
