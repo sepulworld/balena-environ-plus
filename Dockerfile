@@ -4,7 +4,7 @@
 FROM sighmon/balena-enviro-plus:v1
 
 WORKDIR /usr/src
-RUN sudo pip3 install prometheus_client influxdb-client
+RUN sudo pip3 install prometheus_client influxdb-client SafecastPy
 COPY enviroplus_exporter/enviroplus_exporter.py enviroplus_exporter.py
 
 # InfluxDB settings
