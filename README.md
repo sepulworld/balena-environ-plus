@@ -35,7 +35,7 @@ ENV INFLUXDB_URL="https://your_server_location.gcp.cloud2.influxdata.com"
 ENV INFLUXDB_TOKEN="your_token"
 ENV INFLUXDB_ORG_ID="your_organisation_id"
 ENV INFLUXDB_BUCKET="your_bucket_name"
-ENV INFLUXDB_SENSOR_LOCATION="Adelaide"
+ENV INFLUXDB_SENSOR_LOCATION="your_sensor_location"
 ENV INFLUXDB_TIME_BETWEEN_POSTS="5"
 # To see all debug messages
 ENV DEBUG="true"
@@ -49,6 +49,21 @@ If you'd like to also post your data to [Luftdaten](https://meine.luftdaten.info
 ENV LUFTDATEN_TIME_BETWEEN_POSTS="30"
 # To see all debug messages
 ENV DEBUG="true"
+```
+
+## Post to Safecast as well as exporting to Prometheus
+
+If you'd like to also post your data to [Safecast.org](), set these environment variables in the `Dockerfile`:
+
+```env
+ENV SAFECAST_TIME_BETWEEN_POSTS="300"
+ENV SAFECAST_DEV_MODE="false"
+ENV SAFECAST_API_KEY="your_api_key"
+ENV SAFECAST_API_KEY_DEV="your_dev_api_key"
+ENV SAFECAST_LATITUDE="your_sensor_latitude"
+ENV SAFECAST_LONGITUDE="your_sensor_longitude"
+ENV SAFECAST_DEVICE_ID="226"
+ENV SAFECAST_LOCATION_NAME="your_sensor_location"
 ```
 
 ## Deploy with Balena
