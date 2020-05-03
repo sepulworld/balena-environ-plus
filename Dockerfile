@@ -4,7 +4,7 @@
 FROM sighmon/balena-enviro-plus:v1
 
 WORKDIR /usr/src
-RUN sudo pip3 install prometheus_client influxdb-client SafecastPy
+RUN sudo pip3 install prometheus_client influxdb-client SafecastPy python-periphery
 COPY enviroplus_exporter/enviroplus_exporter.py enviroplus_exporter.py
 
 # InfluxDB settings
@@ -28,8 +28,11 @@ ENV SAFECAST_LONGITUDE="your_sensor_longitude"
 ENV SAFECAST_DEVICE_ID="226"
 ENV SAFECAST_LOCATION_NAME="your_sensor_location"
 
+# Blues Notecard settings
+ENV NOTECARD_TIME_BETWEEN_POSTS="600"
+
 # See debug output
 ENV DEBUG="true"
 
 # Uses temperature adjustment of 2.25 and also posts to all other services
-CMD ["python3", "enviroplus_exporter.py", "--factor", "2.25", "--influxdb", "true", "--luftdaten", "true", "--safecast", "true"]
+CMD ["python3", "enviroplus_exporter.py", "--factor", "2.25", "--influxdb", "true", "--luftdaten", "true", "--safecast", "true", "--notecard", "false"]
