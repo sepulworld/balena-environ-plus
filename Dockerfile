@@ -6,6 +6,7 @@ FROM sighmon/balena-enviro-plus:v1
 WORKDIR /usr/src
 RUN sudo pip3 install prometheus_client influxdb-client SafecastPy python-periphery
 COPY enviroplus_exporter/enviroplus_exporter.py enviroplus_exporter.py
+COPY enviroplus_exporter/notecard/notecard/notecard.py notecard/notecard/notecard.py
 
 # InfluxDB settings
 ENV INFLUXDB_URL="https://location.gcp.cloud2.influxdata.com"
