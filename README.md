@@ -53,7 +53,7 @@ ENV DEBUG="true"
 
 ## Post to Safecast as well as exporting to Prometheus
 
-If you'd like to also post your data to [Safecast.org](), set these environment variables in the `Dockerfile`:
+If you'd like to also post your data to [Safecast.org](https://safecast.org), set these environment variables in the `Dockerfile`:
 
 ```env
 ENV SAFECAST_TIME_BETWEEN_POSTS="300"
@@ -64,6 +64,14 @@ ENV SAFECAST_LATITUDE="your_sensor_latitude"
 ENV SAFECAST_LONGITUDE="your_sensor_longitude"
 ENV SAFECAST_DEVICE_ID="226"
 ENV SAFECAST_LOCATION_NAME="your_sensor_location"
+```
+
+# Post to Notehub over mobile LTE
+
+If you'd like to also post your data over mobile LTE using a [Blues](https://blues.io) Notecard, set these environment variables in the `Dockerfile`:
+
+```env
+ENV NOTECARD_TIME_BETWEEN_POSTS="600"
 ```
 
 ## Deploy with Balena
