@@ -35,5 +35,13 @@ ENV NOTECARD_TIME_BETWEEN_POSTS="600"
 # See debug output
 ENV DEBUG="true"
 
-# Uses temperature adjustment of 2.25 and also posts to all other services
-CMD ["python3", "enviroplus_exporter.py", "--factor", "2.25", "--influxdb", "true", "--luftdaten", "true", "--safecast", "true", "--notecard", "false"]
+# Compensation factor OR temperature/humidity adjustment to take into account the CPU temperature
+# ENV COMPENSATION_FACTOR="2.25"
+ENV TEMPERATURE_COMPENSATION="6.6"
+ENV HUMIDITY_COMPENSATION="24.7"
+
+# Uses temperature adjustment factor of 2.25 and also posts to all other services
+# CMD ["sh", "-c", "python3 enviroplus_exporter.py --factor $COMPENSATION_FACTOR --influxdb true --luftdaten true --safecast true --notecard false"]
+
+# Uses temperature compensation of 6.6 and humidity compensation of 24.7 and posts to influxdb and luftdaten
+CMD ["sh", "-c", "python3 enviroplus_exporter.py --temp $TEMPERATURE_COMPENSATION --humid $HUMIDITY_COMPENSATION --influxdb true --luftdaten true"]

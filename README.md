@@ -26,6 +26,17 @@ Build and run the Docker image in the background.
 * See the running container with `docker ps`
 * Check the logs with `docker logs <containaer_name>`
 
+## CPU temperature compensation
+
+The CPU of the Raspberry Pi will influence the Enviro+ temperature & humidity sensor a little, so there are some options for compensating for that.
+
+* `ENV COMPENSATION_FACTOR="2.25"` attempts to match the CPU temperature as it rises and falls
+
+Use `COMPENSATION_FACTOR` OR the two below:
+
+* `ENV TEMPERATURE_COMPENSATION="6.6"` reduces the temperature by 6.6 degrees
+* `ENV HUMIDITY_COMPENSATION="24.7"` reduces the humidity by 24.7 %RH
+
 ## Post to InfluxDB as well as exporting to Prometheus
 
 If you'd like to also post your data to InfluxDB, enable this by adding your [InfluxDB-Cloud](https://www.influxdata.com/products/influxdb-cloud/) environment variables to the `Dockerfile`:
