@@ -51,9 +51,25 @@ ENV LUFTDATEN_TIME_BETWEEN_POSTS="30"
 ENV DEBUG="true"
 ```
 
+## Enabling Particulates on RPi 3, 4, & ZeroW
+
+If you're using Enviro+ on a RPi3, 4 or Zero W you'll need to set `"pi3-miniuart-bt"` in your Balena Dashboard / Device/Fleet Settings / "Define DT overlays" section for it to read from the serial interface for the PMS5003 particulate monitor. 
+
+* [Balena Docs](https://www.balena.io/docs/learn/develop/hardware/i2c-and-spi/#using-uart-or-serial-on-raspberry-pi-3) 
+* [Raspberry Pi Docs](https://www.raspberrypi.org/documentation/configuration/uart.md).
+
+You'll also need to disable the Serial port on the Balena Host by masking the serial getty service. 
+
+```
+# SSH to Balena Host
+mount -o remount,rw /
+systemctl mask serial-getty@serial0.service
+reboot
+```
+
 ## Deploy with Balena
 
-Once you're happy that it works on your Pi, use the Balena CLI to push it to a Balena app.
+Once you're happy that it works on your Pi, use the Balena CLI to push it to a Balena app. 
 
 * `balena push <your_app_name>`
 
