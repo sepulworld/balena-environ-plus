@@ -77,13 +77,23 @@ ENV SAFECAST_DEVICE_ID="226"
 ENV SAFECAST_LOCATION_NAME="your_sensor_location"
 ```
 
-# Post to Notehub over mobile LTE
+## Post to Notehub over mobile LTE
 
 If you'd like to also post your data over mobile LTE using a [Blues](https://blues.io) Notecard, set these environment variables in the `Dockerfile`:
 
 ```env
 ENV NOTECARD_TIME_BETWEEN_POSTS="600"
 ```
+
+## Add LC709023F battery monitor
+
+Connect the [Adafruit LC709023F](https://www.adafruit.com/product/4712) to the SDA, SCL, 3V3 and GND pins on the Enviro+
+
+### Read errors
+
+If you come across the error: `RuntimeError: CRC failure on reading word`, you might need to [set the I2C clock to 10,000Hz](https://learn.adafruit.com/circuitpython-on-raspberrypi-linux/i2c-clock-stretching).
+
+To do this in Balena, add `i2c_arm_baudrate=10000` to the `Device Configuration` tab, `Define DT parameters`, so the full entry is: `"i2c_arm=on","spi=on","audio=on","i2c_arm_baudrate=10000"`
 
 ## Deploy with Balena
 

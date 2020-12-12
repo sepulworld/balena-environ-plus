@@ -4,7 +4,12 @@
 FROM sighmon/balena-enviro-plus:v1
 
 WORKDIR /usr/src
-RUN sudo pip3 install prometheus_client influxdb-client SafecastPy python-periphery
+RUN sudo pip3 install --upgrade setuptools && sudo pip3 install \
+    adafruit-circuitpython-lc709203f \
+    influxdb-client \
+    prometheus_client \
+    python-periphery \
+    SafecastPy
 COPY enviroplus_exporter/enviroplus_exporter.py enviroplus_exporter.py
 COPY enviroplus_exporter/notecard/notecard/notecard.py notecard/notecard/notecard.py
 
@@ -41,7 +46,7 @@ ENV TEMPERATURE_COMPENSATION="6.6"
 ENV HUMIDITY_COMPENSATION="24.7"
 
 # Uses temperature adjustment factor of 2.25 and also posts to all other services
-# CMD ["sh", "-c", "python3 enviroplus_exporter.py --factor $COMPENSATION_FACTOR --influxdb true --luftdaten true --safecast true --notecard false"]
+# CMD ["sh", "-c", "modprobe i2c-dev && python3 enviroplus_exporter.py --factor $COMPENSATION_FACTOR --influxdb true --luftdaten true --safecast true --notecard false"]
 
 # Uses temperature compensation of 6.6 and humidity compensation of 24.7 and posts to influxdb and luftdaten
-CMD ["sh", "-c", "python3 enviroplus_exporter.py --temp $TEMPERATURE_COMPENSATION --humid $HUMIDITY_COMPENSATION --influxdb true --luftdaten true"]
+CMD ["sh", "-c", "modprobe i2c-dev && python3 enviroplus_exporter.py --temp $TEMPERATURE_COMPENSATION --humid $HUMIDITY_COMPENSATION --influxdb true --luftdaten true"]
