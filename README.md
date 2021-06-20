@@ -26,6 +26,17 @@ Build and run the Docker image in the background.
 * See the running container with `docker ps`
 * Check the logs with `docker logs <containaer_name>`
 
+## CPU temperature compensation
+
+The CPU of the Raspberry Pi will influence the Enviro+ temperature & humidity sensor a little, so there are some options for compensating for that.
+
+* `ENV COMPENSATION_FACTOR="2.25"` attempts to match the CPU temperature as it rises and falls
+
+Use `COMPENSATION_FACTOR` OR the two below:
+
+* `ENV TEMPERATURE_COMPENSATION="6.6"` reduces the temperature by 6.6 degrees
+* `ENV HUMIDITY_COMPENSATION="24.7"` reduces the humidity by 24.7 %RH
+
 ## Post to InfluxDB as well as exporting to Prometheus
 
 If you'd like to also post your data to InfluxDB, enable this by adding your [InfluxDB-Cloud](https://www.influxdata.com/products/influxdb-cloud/) environment variables to the `Dockerfile`:
@@ -35,7 +46,7 @@ ENV INFLUXDB_URL="https://your_server_location.gcp.cloud2.influxdata.com"
 ENV INFLUXDB_TOKEN="your_token"
 ENV INFLUXDB_ORG_ID="your_organisation_id"
 ENV INFLUXDB_BUCKET="your_bucket_name"
-ENV INFLUXDB_SENSOR_LOCATION="Adelaide"
+ENV INFLUXDB_SENSOR_LOCATION="your_sensor_location"
 ENV INFLUXDB_TIME_BETWEEN_POSTS="5"
 # To see all debug messages
 ENV DEBUG="true"
@@ -66,6 +77,39 @@ mount -o remount,rw /
 systemctl mask serial-getty@serial0.service
 reboot
 ```
+
+## Post to Safecast as well as exporting to Prometheus
+
+If you'd like to also post your data to [Safecast.org](https://safecast.org), set these environment variables in the `Dockerfile`:
+
+```env
+ENV SAFECAST_TIME_BETWEEN_POSTS="300"
+ENV SAFECAST_DEV_MODE="false"
+ENV SAFECAST_API_KEY="your_api_key"
+ENV SAFECAST_API_KEY_DEV="your_dev_api_key"
+ENV SAFECAST_LATITUDE="your_sensor_latitude"
+ENV SAFECAST_LONGITUDE="your_sensor_longitude"
+ENV SAFECAST_DEVICE_ID="226"
+ENV SAFECAST_LOCATION_NAME="your_sensor_location"
+```
+
+## Post to Notehub over mobile LTE
+
+If you'd like to also post your data over mobile LTE using a [Blues](https://blues.io) Notecard, set these environment variables in the `Dockerfile`:
+
+```env
+ENV NOTECARD_TIME_BETWEEN_POSTS="600"
+```
+
+## Add LC709023F battery monitor
+
+Connect the [Adafruit LC709023F](https://www.adafruit.com/product/4712) to the SDA, SCL, 3V3 and GND pins on the Enviro+
+
+### Read errors
+
+If you come across the error: `RuntimeError: CRC failure on reading word`, you might need to [set the I2C clock to 10,000Hz](https://learn.adafruit.com/circuitpython-on-raspberrypi-linux/i2c-clock-stretching).
+
+To do this in Balena, add `i2c_arm_baudrate=10000` to the `Device Configuration` tab, `Define DT parameters`, so the full entry is: `"i2c_arm=on","spi=on","audio=on","i2c_arm_baudrate=10000"`
 
 ## Deploy with Balena
 
