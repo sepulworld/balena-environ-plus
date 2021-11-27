@@ -11,7 +11,7 @@ RUN sudo pip3 install --upgrade setuptools && sudo pip3 install \
     python-periphery \
     SafecastPy
 COPY enviroplus_exporter/enviroplus_exporter.py enviroplus_exporter.py
-COPY enviroplus_exporter/notecard/notecard/notecard.py notecard/notecard/notecard.py
+COPY enviroplus_exporter/notecard/notecard/notecard.py notecard/notecard.py
 
 # InfluxDB settings
 ENV INFLUXDB_URL="https://location.gcp.cloud2.influxdata.com"
